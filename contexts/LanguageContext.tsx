@@ -94,6 +94,30 @@ const translations = {
     "projects.dashboard.year": "2019 — 2024",
     "projects.dashboard.description": "J’aide les petites entreprises à créer rapidement des outils web sur-mesure : développement de sites web, applications, MVP et automatisations, avec un focus sur la valeur livrée.",
     "projects.dashboard.cta": "Discuter d’un projet",
+
+    "projects.chatbot.client": "Startup SaaS",
+    "projects.chatbot.company": "Startup SaaS",
+    "projects.chatbot.year": "2022",
+    "projects.chatbot.description": "Mise en place d’un chatbot intelligent pour le support client, capable de répondre automatiquement à 60% des demandes courantes. Intégration avec le CRM existant pour un suivi complet des interactions.",
+    "projects.chatbot.cta": "Tester le chatbot",
+
+    "projects.nocode.client": "Équipe interne",
+    "projects.nocode.company": "Équipe interne",
+    "projects.nocode.year": "2023",
+    "projects.nocode.description": "Développement d’une plateforme no-code permettant aux équipes de créer des workflows et applications internes sans compétences techniques. Interface intuitive en drag-and-drop avec modèles prêts à l’emploi.",
+    "projects.nocode.cta": "Accéder à la plateforme",
+
+    "projects.automation.client": "PME de services",
+    "projects.automation.company": "PME de services",
+    "projects.automation.year": "2022",
+    "projects.automation.description": "Automatisation complète de processus métiers répétitifs, avec intégration à Slack, Notion et aux outils de l’écosystème. Gain de temps estimé à 15 heures par semaine et par équipe pour un meilleur focus.",
+    "projects.automation.cta": "Voir les automatisations",
+
+    "projects.ecommerce.client": "E-commerce",
+    "projects.ecommerce.company": "E-commerce",
+    "projects.ecommerce.year": "2023",
+    "projects.ecommerce.description": "Lancement rapide d’un MVP e-commerce avec recommandations produits basées sur l’IA. Optimisation du parcours et de la conversion, avec paiement intégré et gestion des stocks en temps réel.",
+    "projects.ecommerce.cta": "Visiter la boutique",
     
     // Hobbies
     "hobbies.title": "Au-delà du travail",
