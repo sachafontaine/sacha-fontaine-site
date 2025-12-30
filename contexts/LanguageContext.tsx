@@ -69,7 +69,7 @@ const translations = {
     "projects.search.point2": "Plans d’entraînement personnalisés basés sur performance, progression et récupération.",
     "projects.search.point3": "Vision long terme, à la croisée du produit, de la data, de l’IA et des sports d’endurance.",
     "projects.dashboard.name": "Freelance — Product & Web Tools",
-    "projects.dashboard.type": "Client work",
+    "projects.dashboard.type": "Freelance",
     "projects.dashboard.point1": "Création rapide d’outils web sur-mesure pour les petites entreprises.",
     "projects.dashboard.point2": "Sites web, applications, lancement de produits et MVP.",
     "projects.dashboard.point3": "Marketing, automatisation et e-commerce selon les besoins.",

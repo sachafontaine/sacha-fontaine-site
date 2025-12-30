@@ -258,20 +258,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                     ))}
                   </div>
                 )}
-
-                {/* CTA Button */}
-                <div>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      // Action du bouton CTA
-                    }}
-                    className="px-6 py-3 rounded-lg dark:bg-gray-800 bg-gray-900 dark:text-white text-white font-medium transition-all duration-200 hover:scale-105 flex items-center gap-2"
-                  >
-                    <span>{project.cta}</span>
-                    <span>→</span>
-                  </button>
-                </div>
               </div>
             </motion.div>
           )}
