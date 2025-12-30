@@ -1,10 +1,92 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FormEvent, useMemo, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+type Captcha = {
+  a: number;
+  b: number;
+};
+
+const generateCaptcha = (): Captcha => ({
+  a: Math.floor(Math.random() * 8) + 2,
+  b: Math.floor(Math.random() * 8) + 2,
+});
 
 export default function Contact() {
   const { t } = useLanguage();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+    captchaAnswer: "",
+  });
+  const [captcha, setCaptcha] = useState<Captcha>(generateCaptcha);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle",
+  );
+  const [feedback, setFeedback] = useState<string | null>(null);
+
+  const captchaQuestion = useMemo(
+    () => `${captcha.a} + ${captcha.b}`,
+    [captcha.a, captcha.b],
+  );
+
+  const resetForm = () => {
+    setFormData({ name: "", email: "", message: "", captchaAnswer: "" });
+    setCaptcha(generateCaptcha());
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setFeedback(null);
+
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim() ||
+      !formData.captchaAnswer.trim()
+    ) {
+      setStatus("error");
+      setFeedback(t("contact.requiredFields"));
+      return;
+    }
+
+    setStatus("loading");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          captcha,
+          captchaAnswer: formData.captchaAnswer,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setFeedback(t("contact.success"));
+        resetForm();
+      } else {
+        const data = await response.json().catch(() => null);
+        setStatus("error");
+        setFeedback(data?.error ?? t("contact.error"));
+        setCaptcha(generateCaptcha());
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+      setFeedback(t("contact.error"));
+      setCaptcha(generateCaptcha());
+    }
+  };
 
   return (
     <section id="contact" className="py-12 px-4 sm:px-6 lg:px-8 pb-24">
@@ -32,24 +114,11 @@ export default function Contact() {
           </p>
 
           <div className="space-y-6">
-            <a
-              href="mailto:sacha@example.com"
-              className="inline-block"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-lg dark:bg-gray-800 bg-gray-900 dark:text-white text-white font-semibold text-lg transition-all duration-200 w-full sm:w-auto"
-              >
-                {t("contact.writeMe")}
-              </motion.button>
-            </a>
-
             <div className="mt-8 pt-8 dark:border-t border-t dark:border-gray-800 border-gray-200">
               <h3 className="text-xl font-semibold dark:text-white text-gray-900 mb-4">
                 {t("contact.formTitle")}
               </h3>
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <label
                     htmlFor="name"
@@ -61,8 +130,17 @@ export default function Contact() {
                     type="text"
                     id="name"
                     name="name"
+                    required
                     className="w-full px-4 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:border-gray-700/50 border-gray-300 dark:text-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500 transition-all"
                     placeholder={t("contact.namePlaceholder")}
+                    value={formData.name}
+                    onChange={(event) =>
+                      setFormData((previous) => ({
+                        ...previous,
+                        name: event.target.value,
+                      }))
+                    }
+                    autoComplete="name"
                   />
                 </div>
                 <div>
@@ -76,8 +154,17 @@ export default function Contact() {
                     type="email"
                     id="email"
                     name="email"
+                    required
                     className="w-full px-4 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:border-gray-700/50 border-gray-300 dark:text-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500 transition-all"
                     placeholder={t("contact.emailPlaceholder")}
+                    value={formData.email}
+                    onChange={(event) =>
+                      setFormData((previous) => ({
+                        ...previous,
+                        email: event.target.value,
+                      }))
+                    }
+                    autoComplete="email"
                   />
                 </div>
                 <div>
@@ -91,19 +178,61 @@ export default function Contact() {
                     id="message"
                     name="message"
                     rows={5}
+                    required
                     className="w-full px-4 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:border-gray-700/50 border-gray-300 dark:text-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all resize-none"
                     placeholder={t("contact.messagePlaceholder")}
+                    value={formData.message}
+                    onChange={(event) =>
+                      setFormData((previous) => ({
+                        ...previous,
+                        message: event.target.value,
+                      }))
+                    }
                   />
                 </div>
+                <div>
+                  <label
+                    htmlFor="captcha"
+                    className="block text-sm font-medium dark:text-gray-300 text-gray-700 mb-2"
+                  >
+                    {t("contact.captcha")} ({captchaQuestion})
+                  </label>
+                  <input
+                    type="number"
+                    id="captcha"
+                    name="captcha"
+                    required
+                    className="w-full px-4 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:border-gray-700/50 border-gray-300 dark:text-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500 transition-all"
+                    placeholder={t("contact.captchaPlaceholder")}
+                    value={formData.captchaAnswer}
+                    onChange={(event) =>
+                      setFormData((previous) => ({
+                        ...previous,
+                        captchaAnswer: event.target.value,
+                      }))
+                    }
+                    inputMode="numeric"
+                    min="0"
+                  />
+                </div>
+                {feedback && (
+                  <p
+                    className={`text-sm ${
+                      status === "success"
+                        ? "text-green-600 dark:text-green-400"
+                        : "text-red-600 dark:text-red-400"
+                    }`}
+                    aria-live="polite"
+                  >
+                    {feedback}
+                  </p>
+                )}
                 <button
-                  type="button"
-                  className="px-6 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-100 dark:hover:bg-gray-700/50 hover:bg-gray-200 dark:text-white text-gray-900 font-medium dark:border-gray-700/50 border-gray-300/50 transition-all duration-200 hover:scale-105"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert(t("contact.sendAlert"));
-                  }}
+                  type="submit"
+                  className="px-6 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-100 dark:hover:bg-gray-700/50 hover:bg-gray-200 dark:text-white text-gray-900 font-medium dark:border-gray-700/50 border-gray-300/50 transition-all duration-200 hover:scale-105 disabled:opacity-60"
+                  disabled={status === "loading"}
                 >
-                  {t("contact.send")}
+                  {status === "loading" ? t("contact.sending") : t("contact.send")}
                 </button>
               </form>
             </div>
