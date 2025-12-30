@@ -114,11 +114,24 @@ export default function Contact() {
           </p>
 
           <div className="space-y-6">
+            <a
+              href="mailto:sacha@example.com"
+              className="inline-block"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 rounded-lg dark:bg-gray-800 bg-gray-900 dark:text-white text-white font-semibold text-lg transition-all duration-200 w-full sm:w-auto"
+              >
+                {t("contact.writeMe")}
+              </motion.button>
+            </a>
+
             <div className="mt-8 pt-8 dark:border-t border-t dark:border-gray-800 border-gray-200">
               <h3 className="text-xl font-semibold dark:text-white text-gray-900 mb-4">
                 {t("contact.formTitle")}
               </h3>
-              <form className="space-y-4" onSubmit={handleSubmit}>
+              <form className="space-y-4">
                 <div>
                   <label
                     htmlFor="name"
@@ -130,17 +143,8 @@ export default function Contact() {
                     type="text"
                     id="name"
                     name="name"
-                    required
                     className="w-full px-4 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:border-gray-700/50 border-gray-300 dark:text-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500 transition-all"
                     placeholder={t("contact.namePlaceholder")}
-                    value={formData.name}
-                    onChange={(event) =>
-                      setFormData((previous) => ({
-                        ...previous,
-                        name: event.target.value,
-                      }))
-                    }
-                    autoComplete="name"
                   />
                 </div>
                 <div>
@@ -154,17 +158,8 @@ export default function Contact() {
                     type="email"
                     id="email"
                     name="email"
-                    required
                     className="w-full px-4 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:border-gray-700/50 border-gray-300 dark:text-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500 transition-all"
                     placeholder={t("contact.emailPlaceholder")}
-                    value={formData.email}
-                    onChange={(event) =>
-                      setFormData((previous) => ({
-                        ...previous,
-                        email: event.target.value,
-                      }))
-                    }
-                    autoComplete="email"
                   />
                 </div>
                 <div>
@@ -178,61 +173,19 @@ export default function Contact() {
                     id="message"
                     name="message"
                     rows={5}
-                    required
                     className="w-full px-4 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:border-gray-700/50 border-gray-300 dark:text-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all resize-none"
                     placeholder={t("contact.messagePlaceholder")}
-                    value={formData.message}
-                    onChange={(event) =>
-                      setFormData((previous) => ({
-                        ...previous,
-                        message: event.target.value,
-                      }))
-                    }
                   />
                 </div>
-                <div>
-                  <label
-                    htmlFor="captcha"
-                    className="block text-sm font-medium dark:text-gray-300 text-gray-700 mb-2"
-                  >
-                    {t("contact.captcha")} ({captchaQuestion})
-                  </label>
-                  <input
-                    type="number"
-                    id="captcha"
-                    name="captcha"
-                    required
-                    className="w-full px-4 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:border-gray-700/50 border-gray-300 dark:text-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500 transition-all"
-                    placeholder={t("contact.captchaPlaceholder")}
-                    value={formData.captchaAnswer}
-                    onChange={(event) =>
-                      setFormData((previous) => ({
-                        ...previous,
-                        captchaAnswer: event.target.value,
-                      }))
-                    }
-                    inputMode="numeric"
-                    min="0"
-                  />
-                </div>
-                {feedback && (
-                  <p
-                    className={`text-sm ${
-                      status === "success"
-                        ? "text-green-600 dark:text-green-400"
-                        : "text-red-600 dark:text-red-400"
-                    }`}
-                    aria-live="polite"
-                  >
-                    {feedback}
-                  </p>
-                )}
                 <button
-                  type="submit"
-                  className="px-6 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-100 dark:hover:bg-gray-700/50 hover:bg-gray-200 dark:text-white text-gray-900 font-medium dark:border-gray-700/50 border-gray-300/50 transition-all duration-200 hover:scale-105 disabled:opacity-60"
-                  disabled={status === "loading"}
+                  type="button"
+                  className="px-6 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-100 dark:hover:bg-gray-700/50 hover:bg-gray-200 dark:text-white text-gray-900 font-medium dark:border-gray-700/50 border-gray-300/50 transition-all duration-200 hover:scale-105"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    alert(t("contact.sendAlert"));
+                  }}
                 >
-                  {status === "loading" ? t("contact.sending") : t("contact.send")}
+                  {t("contact.send")}
                 </button>
               </form>
             </div>
@@ -246,17 +199,42 @@ export default function Contact() {
                   className="dark:text-gray-400 text-gray-600 hover:text-gray-300 dark:hover:text-gray-200 transition-colors"
                 >
                   LinkedIn
-                </a>
-                <a
-                  href="https://github.com/sachafontaine/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="dark:text-gray-400 text-gray-600 hover:text-gray-300 dark:hover:text-gray-200 transition-colors"
-                >
-                  GitHub
-                </a>
+                </h3>
+                <p className="text-sm dark:text-gray-400 text-gray-600">
+                  Connectons-nous
+                </p>
               </div>
-            </div>
+            </motion.a>
+
+            {/* GitHub */}
+            <motion.a
+              href="https://github.com/sachafontaine/"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="p-6 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:hover:bg-gray-800/70 hover:bg-gray-100 dark:border-gray-700/30 border-gray-200 transition-all duration-200 cursor-pointer group"
+            >
+              <div className="flex flex-col items-center text-center">
+                <svg
+                  className="w-8 h-8 mb-3 dark:text-gray-400 text-gray-600 group-hover:dark:text-white group-hover:text-gray-900 transition-colors"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <h3 className="font-semibold dark:text-white text-gray-900 mb-1">
+                  GitHub
+                </h3>
+                <p className="text-sm dark:text-gray-400 text-gray-600">
+                  Voir mes projets
+                </p>
+              </div>
+            </motion.a>
           </div>
         </motion.div>
       </div>
