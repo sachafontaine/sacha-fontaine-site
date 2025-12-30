@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Image from "next/image";
 
@@ -51,7 +51,12 @@ function getProjects(t: (key: string) => string): Project[] {
       year: t("projects.dashboard.year"),
       description: t("projects.dashboard.description"),
       cta: t("projects.dashboard.cta"),
-      images: ["/images/mouillerlemaillot.png", "/images/tabledescopains.png"],
+      images: [
+        "/images/mouillerlemaillot.png",
+        "/images/tabledescopains.png",
+        "/images/pastislaborde.png",
+        "/images/maisonm.png",
+      ],
     },
   ];
 }
@@ -60,6 +65,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [isExpanded, setIsExpanded] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { t } = useLanguage();
 
   // Générer une icône/lettre pour chaque projet
@@ -72,6 +79,58 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     "bg-gray-500",
     "bg-gray-700",
   ];
+
+  // Fonctions pour la galerie
+  const openGallery = (imageIndex: number) => {
+    setCurrentImageIndex(imageIndex);
+    setGalleryOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeGallery = () => {
+    setGalleryOpen(false);
+    document.body.style.overflow = "unset";
+  };
+
+  const nextImage = () => {
+    if (project.images && project.images.length > 0) {
+      const imagesLength = project.images.length;
+      setCurrentImageIndex((prev) => (prev + 1) % imagesLength);
+    }
+  };
+
+  const prevImage = () => {
+    if (project.images && project.images.length > 0) {
+      const imagesLength = project.images.length;
+      setCurrentImageIndex((prev) => (prev - 1 + imagesLength) % imagesLength);
+    }
+  };
+
+  // Navigation au clavier
+  useEffect(() => {
+    if (!galleryOpen || !project.images) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeGallery();
+      } else if (e.key === "ArrowRight") {
+        nextImage();
+      } else if (e.key === "ArrowLeft") {
+        prevImage();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [galleryOpen]);
+
+  // Nettoyage au démontage
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
 
   return (
     <div ref={ref} className="overflow-hidden">
@@ -194,7 +253,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                     {project.images.map((image, idx) => (
                       <div
                         key={idx}
-                        className="aspect-video relative rounded-lg overflow-hidden dark:bg-gray-800/50 bg-gray-100"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openGallery(idx);
+                        }}
+                        className="aspect-video relative rounded-lg overflow-hidden dark:bg-gray-800/50 bg-gray-100 cursor-pointer hover:opacity-90 transition-opacity duration-200 group"
                       >
                         <Image
                           src={image}
@@ -203,6 +266,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                           className="object-cover"
                           sizes="(max-width: 768px) 100vw, 50vw"
                         />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200 flex items-center justify-center">
+                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-white bg-black/50 px-3 py-1 rounded-full text-sm">
+                            Cliquer pour agrandir
+                          </div>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -226,6 +294,118 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           )}
         </AnimatePresence>
       </motion.div>
+
+      {/* Gallery Modal */}
+      <AnimatePresence>
+        {galleryOpen && project.images && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+            onClick={closeGallery}
+          >
+            {/* Close Button */}
+            <button
+              onClick={closeGallery}
+              className="absolute top-4 right-4 z-10 text-white hover:text-gray-300 transition-colors duration-200 p-2"
+              aria-label="Fermer la galerie"
+            >
+              <svg
+                className="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            {/* Previous Button */}
+            {project.images.length > 1 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevImage();
+                }}
+                className="absolute left-4 z-10 text-white hover:text-gray-300 transition-colors duration-200 p-3 bg-black/50 rounded-full hover:bg-black/70"
+                aria-label="Image précédente"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+            )}
+
+            {/* Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="relative max-w-[90vw] max-h-[90vh] w-auto h-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={project.images[currentImageIndex]}
+                alt={`${project.name} - Image ${currentImageIndex + 1}`}
+                width={1200}
+                height={800}
+                className="max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-lg"
+                priority
+              />
+            </motion.div>
+
+            {/* Next Button */}
+            {project.images.length > 1 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextImage();
+                }}
+                className="absolute right-4 z-10 text-white hover:text-gray-300 transition-colors duration-200 p-3 bg-black/50 rounded-full hover:bg-black/70"
+                aria-label="Image suivante"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            )}
+
+            {/* Image Counter */}
+            {project.images.length > 1 && (
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 text-white bg-black/50 px-4 py-2 rounded-full text-sm">
+                {currentImageIndex + 1} / {project.images.length}
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
