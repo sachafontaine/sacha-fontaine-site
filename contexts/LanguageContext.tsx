@@ -27,8 +27,8 @@ const translations = {
     
     // Hero
     "hero.subtitle": "Product Builder & Entrepreneur",
-    "hero.description1": "Je conçois et lance des produits digitaux utiles, durables et orientés impact.",
-    "hero.description2": "J’aide les entreprises à transformer des idées complexes en produits concrets : applications web, expériences IA, outils métier et automatisations. De l’idée à la mise en production, avec une approche pragmatique, produit et orientée utilisateurs.",
+    "hero.description1": "Je conçois et lance des produits digitaux concrets. Création de sites et d’applications, lancement de produits digitaux, outils sur-mesure et automatisations.",
+    "hero.description2": "Product builder depuis plus de 5 ans, autonome et curieux, je m’implique sur l’ensemble du cycle produit : de l’idée à la mise en production, avec une approche pragmatique et orientée utilisateurs.",
     "hero.available": "Travaillons ensemble",
     "hero.seeProjects": "Voir mes projets",
     "hero.contactMe": "Me contacter",
@@ -121,10 +121,10 @@ const translations = {
     
     // Hobbies
     "hobbies.title": "Au-delà du travail",
-    "hobbies.running.title": "Trail, outdoor & endurance",
-    "hobbies.running.desc": "Je pratique le trail et les sports d’endurance. Ces disciplines influencent directement ma manière de construire des produits : progression dans le temps, méthode, constance et vision long terme.",
+    "hobbies.running.title": "Running, trail & outdoor",
+    "hobbies.running.desc": "Je fais parti d'un club d'athlétisme et m'entraîne quotidiennement. Ces disciplines influencent directement ma manière de construire des produits : progression dans le temps, méthode, constance et vision long terme.",
     "hobbies.ai.title": "Entrepreneuriat",
-    "hobbies.ai.desc": "Je suis co-fondateur d’une marque de maillots de bain née d’un besoin concret, lancée en crowdfunding puis développée sur plusieurs années. Un terrain d’apprentissage réel autour du produit, du marketing et de l’exécution.",
+    "hobbies.ai.desc": "Je suis co-fondateur d’une marque de maillots de bain (Mouiller le maillot) née d’un besoin concret, lancée en crowdfunding puis développée sur plusieurs années. Un terrain d’apprentissage réel autour du produit, du marketing et de l’exécution.",
     
     // Contact
     "contact.title": "Travaillons ensemble",
@@ -153,8 +153,8 @@ const translations = {
     
     // Hero
     "hero.subtitle": "Product Builder & Entrepreneur",
-    "hero.description1": "I design and launch useful, sustainable, impact-driven digital products.",
-    "hero.description2": "I help companies turn complex ideas into concrete products: web applications, AI experiences, business tools and automations. From idea to production, with a pragmatic, product-driven and user-focused approach.",
+    "hero.description1": "I design and launch concrete digital products. Website and application creation, digital product launches, custom tools and automations.",
+    "hero.description2": "With over 5 years of experience as a product builder, autonomous and curious, I’m involved across the entire product lifecycle: from idea to production, with a pragmatic and user-focused approach.",
     "hero.available": "Let’s work together",
     "hero.seeProjects": "View my projects",
     "hero.contactMe": "Contact me",
@@ -247,10 +247,10 @@ const translations = {
     
     // Hobbies
     "hobbies.title": "Beyond work",
-    "hobbies.running.title": "Trail, outdoor & endurance",
-    "hobbies.running.desc": "I practice trail running and endurance sports. These disciplines shape how I build products: long-term thinking, consistency, method and sustainable progress.",
+    "hobbies.running.title": "Running, trail & outdoor",
+    "hobbies.running.desc": "I’m part of an athletics club and train on a daily basis. These disciplines directly influence how I build products: long-term progress, method, consistency, and vision.",
     "hobbies.ai.title": "Entrepreneurship",
-    "hobbies.ai.desc": "I am also the co-founder of a swimwear brand born from a concrete need, launched through crowdfunding and grown over several years. A real-world playground for product, marketing and execution.",
+    "hobbies.ai.desc": "I am also the co-founder of a swimwear brand (Mouiller le maillot)born from a concrete need, launched through crowdfunding and grown over several years. A real-world playground for product, marketing and execution.",
     
     // Contact
     "contact.title": "Let's work together",
