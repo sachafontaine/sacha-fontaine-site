@@ -45,10 +45,6 @@ Les données (expériences, projets, hobbies) sont directement dans les composan
 - **Projets** : `components/Projects.tsx` - tableau `projects`
 - **Hobbies** : `components/Hobbies.tsx` - tableau `hobbies`
 
-### Modifier l'email de contact
-
-Dans `components/Contact.tsx`, ligne avec `mailto:`, remplacez `sacha@example.com` par votre email.
-
 ### Modifier la couleur d'accent
 
 Dans `tailwind.config.ts`, modifiez la couleur `accent` (actuellement violet `#8b5cf6`).
@@ -64,9 +60,19 @@ Dans `components/Hero.tsx`, cherchez le badge "Disponible pour de nouvelles miss
 - **Tailwind CSS**
 - **Framer Motion** (animations subtiles)
 
+## ✉️ Formulaire de contact
+
+Le formulaire envoie désormais les messages via l'API [Resend](https://resend.com/). Ajoutez les variables d'environnement suivantes avant de lancer le site :
+
+```bash
+RESEND_API_KEY=VotreCléResend
+RESEND_FROM_EMAIL=contact@votre-domaine.com # adresse vérifiée chez Resend
+```
+
+Tous les champs sont requis et un captcha simple (addition) limite le spam. Les messages sont envoyés à `sachafontaine.pro@gmail.com` et utilisent le champ email de l'utilisateur comme `reply-to`.
+
 ## 📝 Notes
 
-- Le formulaire de contact est en mode démo (pas de backend). Utilisez le bouton "M'écrire" pour un contact direct via email.
 - Le site est optimisé pour mobile (mobile-first).
 - Toutes les animations sont subtiles et utilisent Framer Motion.
 
