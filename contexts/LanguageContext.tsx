@@ -85,13 +85,13 @@ const translations = {
     // Project specific details
     "projects.search.client": "Projet personnel",
     "projects.search.company": "Pacemate",
-    "projects.search.year": "2024",
+    "projects.search.year": "2025-2026",
     "projects.search.description": "Pacemate est un coach de course à pied propulsé par l’IA. Il génère des plans d’entraînement personnalisés basés sur les performances, la progression et la récupération, avec une vision long terme.",
     "projects.search.cta": "En savoir plus",
 
     "projects.dashboard.client": "Clients",
     "projects.dashboard.company": "Freelance",
-    "projects.dashboard.year": "2019 — 2024",
+    "projects.dashboard.year": "2019 — Maintenant",
     "projects.dashboard.description": "J’aide les petites entreprises à créer rapidement des outils web sur-mesure : développement de sites web, applications, MVP et automatisations, avec un focus sur la valeur livrée.",
     "projects.dashboard.cta": "Discuter d’un projet",
 
@@ -211,13 +211,13 @@ const translations = {
     // Project specific details
     "projects.search.client": "Personal project",
     "projects.search.company": "Pacemate",
-    "projects.search.year": "2024",
+    "projects.search.year": "2025-2026",
     "projects.search.description": "Pacemate is an AI-powered running coach. It generates personalized training plans based on performance, progression and recovery, with a long-term and sustainable approach.",
     "projects.search.cta": "Learn more",
     
     "projects.dashboard.client": "Clients",
     "projects.dashboard.company": "Freelance",
-    "projects.dashboard.year": "2019 – 2024",
+    "projects.dashboard.year": "2019 – Present",
     "projects.dashboard.description": "I help small businesses build custom web tools, fast: websites, applications, MVPs and automations, with a focus on delivered value.",
     "projects.dashboard.cta": "Discuss a project",
     
