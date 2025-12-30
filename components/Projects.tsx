@@ -69,17 +69,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { t } = useLanguage();
 
-  // Générer une icône/lettre pour chaque projet
-  const projectIcon = project.name.charAt(0).toUpperCase();
-  const iconColors = [
-    "bg-gray-600",
-    "bg-gray-500",
-    "bg-gray-700",
-    "bg-gray-600",
-    "bg-gray-500",
-    "bg-gray-700",
-  ];
-
   // Fonctions pour la galerie
   const openGallery = (imageIndex: number) => {
     setCurrentImageIndex(imageIndex);
@@ -144,11 +133,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       >
         {/* Card Header */}
         <div className="p-5 flex items-center gap-4">
-          <div
-            className={`w-12 h-12 rounded-full ${iconColors[index % iconColors.length]} flex items-center justify-center text-white font-semibold text-lg flex-shrink-0`}
-          >
-            {projectIcon}
-          </div>
           <div className="flex-1 min-w-0">
             <h3 className="text-lg font-semibold dark:text-white text-gray-900 mb-1">
               {project.name}
@@ -211,15 +195,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                     <p className="text-sm font-medium dark:text-white text-gray-900">
                       {project.year}
                     </p>
-                  </div>
-                </div>
-
-                {/* Project Logo/Icon Large */}
-                <div className="mb-6">
-                  <div
-                    className={`w-20 h-20 rounded-full ${iconColors[index % iconColors.length]} flex items-center justify-center text-white font-bold text-3xl`}
-                  >
-                    {projectIcon}
                   </div>
                 </div>
 
