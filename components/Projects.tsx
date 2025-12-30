@@ -35,6 +35,7 @@ function getProjects(t: (key: string) => string): Project[] {
       year: t("projects.search.year"),
       description: t("projects.search.description"),
       cta: t("projects.search.cta"),
+      images: ["/images/pacemate1.png", "/images/pacemate2.png"],
     },
     {
       id: "dashboard",
@@ -50,6 +51,7 @@ function getProjects(t: (key: string) => string): Project[] {
       year: t("projects.dashboard.year"),
       description: t("projects.dashboard.description"),
       cta: t("projects.dashboard.cta"),
+      images: ["/images/mouillerlemaillot.png", "/images/tabledescopains.png"],
     },
   ];
 }
@@ -186,19 +188,25 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   </ul>
                 </div>
 
-                {/* Images Section (placeholder - vous pouvez ajouter des images plus tard) */}
-                <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="aspect-video dark:bg-gray-800/50 bg-gray-100 rounded-lg flex items-center justify-center">
-                    <span className="text-sm dark:text-gray-500 text-gray-400">
-                      Image 1
-                    </span>
+                {/* Images Section */}
+                {project.images && project.images.length > 0 && (
+                  <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {project.images.map((image, idx) => (
+                      <div
+                        key={idx}
+                        className="aspect-video relative rounded-lg overflow-hidden dark:bg-gray-800/50 bg-gray-100"
+                      >
+                        <Image
+                          src={image}
+                          alt={`${project.name} - Image ${idx + 1}`}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
+                    ))}
                   </div>
-                  <div className="aspect-video dark:bg-gray-800/50 bg-gray-100 rounded-lg flex items-center justify-center">
-                    <span className="text-sm dark:text-gray-500 text-gray-400">
-                      Image 2
-                    </span>
-                  </div>
-                </div>
+                )}
 
                 {/* CTA Button */}
                 <div>
