@@ -9,8 +9,11 @@ export const metadata: Metadata = {
   title: "Sacha Fontaine - Product Builder & Entrepreneur",
   description:
     "Product builder, AI enthusiast, passionné par le développement de produits digitaux et le sport.",
+  icons: {
+    icon: "/images/favicon.png",
+  },
   openGraph: {
-    title: "Sacha Fontaine - Product Builder & Entrepreneur",
+    title: "Sacha Fontaine - Product Builder et Entrepreneur",
     description:
       "Product builder, AI enthusiast, passionné par le développement de produits digitaux et le sport.",
     type: "website",
