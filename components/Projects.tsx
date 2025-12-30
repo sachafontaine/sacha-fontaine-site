@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Image from "next/image";
 
@@ -67,7 +68,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
   const { t } = useLanguage();
+
+  // Pour le portail React
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
   // Fonctions pour la galerie
   const openGallery = (imageIndex: number) => {
@@ -270,22 +278,33 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </AnimatePresence>
       </motion.div>
 
-      {/* Gallery Modal */}
-      <AnimatePresence>
-        {galleryOpen && project.images && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
-            onClick={closeGallery}
-          >
-            {/* Close Button */}
-            <button
-              onClick={closeGallery}
-              className="absolute top-4 right-4 z-10 text-white hover:text-gray-300 transition-colors duration-200 p-2"
-              aria-label="Fermer la galerie"
-            >
+      {/* Gallery Modal - Rendu via portail pour être toujours au top level */}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {galleryOpen && project.images && (
+              <>
+                {/* Backdrop - Capture les clics pour fermer */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed top-0 left-0 right-0 bottom-0 z-[9998] bg-black/95"
+                  onClick={closeGallery}
+                />
+                {/* Modal Content */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed top-0 left-0 right-0 bottom-0 z-[9999] flex items-center justify-center pointer-events-none"
+                >
+              {/* Close Button */}
+              <button
+                onClick={closeGallery}
+                className="absolute top-4 right-4 z-10 text-white hover:text-gray-300 transition-colors duration-200 p-2 pointer-events-auto"
+                aria-label="Fermer la galerie"
+              >
               <svg
                 className="w-8 h-8"
                 fill="none"
@@ -308,7 +327,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   e.stopPropagation();
                   prevImage();
                 }}
-                className="absolute left-4 z-10 text-white hover:text-gray-300 transition-colors duration-200 p-3 bg-black/50 rounded-full hover:bg-black/70"
+                className="absolute left-4 z-10 text-white hover:text-gray-300 transition-colors duration-200 p-3 bg-black/50 rounded-full hover:bg-black/70 pointer-events-auto"
                 aria-label="Image précédente"
               >
                 <svg
@@ -333,7 +352,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.2 }}
-              className="relative max-w-[90vw] max-h-[90vh] w-auto h-auto"
+              className="relative max-w-[90vw] max-h-[90vh] w-auto h-auto pointer-events-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <Image
@@ -353,7 +372,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   e.stopPropagation();
                   nextImage();
                 }}
-                className="absolute right-4 z-10 text-white hover:text-gray-300 transition-colors duration-200 p-3 bg-black/50 rounded-full hover:bg-black/70"
+                className="absolute right-4 z-10 text-white hover:text-gray-300 transition-colors duration-200 p-3 bg-black/50 rounded-full hover:bg-black/70 pointer-events-auto"
                 aria-label="Image suivante"
               >
                 <svg
@@ -374,13 +393,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
             {/* Image Counter */}
             {project.images.length > 1 && (
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 text-white bg-black/50 px-4 py-2 rounded-full text-sm">
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 text-white bg-black/50 px-4 py-2 rounded-full text-sm pointer-events-none">
                 {currentImageIndex + 1} / {project.images.length}
               </div>
             )}
-          </motion.div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </div>
   );
 }
