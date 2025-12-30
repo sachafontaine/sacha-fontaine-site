@@ -44,6 +44,16 @@ function getExperiences(t: (key: string) => string): Experience[] {
         t("exp.startup.point3"),
       ],
     },
+    {
+      title: t("exp.media.title"),
+      organization: t("exp.media.org"),
+      period: t("exp.media.period"),
+      points: [
+        t("exp.media.point1"),
+        t("exp.media.point2"),
+        t("exp.media.point3"),
+      ],
+    },
   ];
 }
 

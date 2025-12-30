@@ -20,10 +20,6 @@ function getHobbies(t: (key: string) => string): Hobby[] {
       title: t("hobbies.ai.title"),
       description: t("hobbies.ai.desc"),
     },
-    {
-      title: t("hobbies.side.title"),
-      description: t("hobbies.side.desc"),
-    },
   ];
 }
 
