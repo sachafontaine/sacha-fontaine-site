@@ -1,92 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FormEvent, useMemo, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-type Captcha = {
-  a: number;
-  b: number;
-};
-
-const generateCaptcha = (): Captcha => ({
-  a: Math.floor(Math.random() * 8) + 2,
-  b: Math.floor(Math.random() * 8) + 2,
-});
 
 export default function Contact() {
   const { t } = useLanguage();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-    captchaAnswer: "",
-  });
-  const [captcha, setCaptcha] = useState<Captcha>(generateCaptcha);
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
-    "idle",
-  );
-  const [feedback, setFeedback] = useState<string | null>(null);
-
-  const captchaQuestion = useMemo(
-    () => `${captcha.a} + ${captcha.b}`,
-    [captcha.a, captcha.b],
-  );
-
-  const resetForm = () => {
-    setFormData({ name: "", email: "", message: "", captchaAnswer: "" });
-    setCaptcha(generateCaptcha());
-  };
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setFeedback(null);
-
-    if (
-      !formData.name.trim() ||
-      !formData.email.trim() ||
-      !formData.message.trim() ||
-      !formData.captchaAnswer.trim()
-    ) {
-      setStatus("error");
-      setFeedback(t("contact.requiredFields"));
-      return;
-    }
-
-    setStatus("loading");
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          captcha,
-          captchaAnswer: formData.captchaAnswer,
-        }),
-      });
-
-      if (response.ok) {
-        setStatus("success");
-        setFeedback(t("contact.success"));
-        resetForm();
-      } else {
-        const data = await response.json().catch(() => null);
-        setStatus("error");
-        setFeedback(data?.error ?? t("contact.error"));
-        setCaptcha(generateCaptcha());
-      }
-    } catch (error) {
-      console.error(error);
-      setStatus("error");
-      setFeedback(t("contact.error"));
-      setCaptcha(generateCaptcha());
-    }
-  };
 
   return (
     <section id="contact" className="py-12 px-4 sm:px-6 lg:px-8 pb-24">
@@ -113,91 +31,55 @@ export default function Contact() {
             {t("contact.description")}
           </p>
 
-          <div className="space-y-6">
-            <a
-              href="mailto:sacha@example.com"
-              className="inline-block"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Mail */}
+            <motion.a
+              href="mailto:hello@sachafontaine.fr"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="p-6 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:hover:bg-gray-800/70 hover:bg-gray-100 dark:border-gray-700/30 border-gray-200 transition-all duration-200 cursor-pointer group"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-lg dark:bg-gray-800 bg-gray-900 dark:text-white text-white font-semibold text-lg transition-all duration-200 w-full sm:w-auto"
-              >
-                {t("contact.writeMe")}
-              </motion.button>
-            </a>
-
-            <div className="mt-8 pt-8 dark:border-t border-t dark:border-gray-800 border-gray-200">
-              <h3 className="text-xl font-semibold dark:text-white text-gray-900 mb-4">
-                {t("contact.formTitle")}
-              </h3>
-              <form className="space-y-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium dark:text-gray-300 text-gray-700 mb-2"
-                  >
-                    {t("contact.name")}
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="w-full px-4 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:border-gray-700/50 border-gray-300 dark:text-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500 transition-all"
-                    placeholder={t("contact.namePlaceholder")}
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium dark:text-gray-300 text-gray-700 mb-2"
-                  >
-                    {t("contact.email")}
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:border-gray-700/50 border-gray-300 dark:text-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500 transition-all"
-                    placeholder={t("contact.emailPlaceholder")}
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium dark:text-gray-300 text-gray-700 mb-2"
-                  >
-                    {t("contact.message")}
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    className="w-full px-4 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:border-gray-700/50 border-gray-300 dark:text-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all resize-none"
-                    placeholder={t("contact.messagePlaceholder")}
-                  />
-                </div>
-                <button
-                  type="button"
-                  className="px-6 py-3 rounded-lg dark:bg-gray-800/50 bg-gray-100 dark:hover:bg-gray-700/50 hover:bg-gray-200 dark:text-white text-gray-900 font-medium dark:border-gray-700/50 border-gray-300/50 transition-all duration-200 hover:scale-105"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert(t("contact.sendAlert"));
-                  }}
+              <div className="flex flex-col items-center text-center">
+                <svg
+                  className="w-8 h-8 mb-3 dark:text-gray-400 text-gray-600 group-hover:dark:text-white group-hover:text-gray-900 transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  {t("contact.send")}
-                </button>
-              </form>
-            </div>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                <h3 className="font-semibold dark:text-white text-gray-900 mb-1">
+                  Email
+                </h3>
+                <p className="text-sm dark:text-gray-400 text-gray-600 break-all">
+                  hello@sachafontaine.fr
+                </p>
+              </div>
+            </motion.a>
 
-            <div className="mt-8 pt-8 dark:border-t border-t dark:border-gray-800 border-gray-200">
-              <div className="flex flex-wrap gap-4">
-                <a
-                  href="https://www.linkedin.com/in/sacha-fontaine/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="dark:text-gray-400 text-gray-600 hover:text-gray-300 dark:hover:text-gray-200 transition-colors"
+            {/* LinkedIn */}
+            <motion.a
+              href="https://www.linkedin.com/in/sacha-fontaine/"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="p-6 rounded-lg dark:bg-gray-800/50 bg-gray-50 dark:hover:bg-gray-800/70 hover:bg-gray-100 dark:border-gray-700/30 border-gray-200 transition-all duration-200 cursor-pointer group"
+            >
+              <div className="flex flex-col items-center text-center">
+                <svg
+                  className="w-8 h-8 mb-3 dark:text-gray-400 text-gray-600 group-hover:dark:text-white group-hover:text-gray-900 transition-colors"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
                 >
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+                <h3 className="font-semibold dark:text-white text-gray-900 mb-1">
                   LinkedIn
                 </h3>
                 <p className="text-sm dark:text-gray-400 text-gray-600">
@@ -241,4 +123,3 @@ export default function Contact() {
     </section>
   );
 }
-
