@@ -280,11 +280,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>("en");
 
   useEffect(() => {
+    // Vérifier si l'utilisateur a déjà fait un choix manuel
     const savedLanguage = localStorage.getItem("language") as Language;
     if (savedLanguage && (savedLanguage === "fr" || savedLanguage === "en")) {
       setLanguageState(savedLanguage);
     } else {
-      // Par défaut : anglais (comme demandé)
+      // Par défaut : anglais
       setLanguageState("en");
     }
   }, []);
