@@ -1,0 +1,312 @@
+<html lang="en" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacha Fontaine | AI Engineer &amp; Product</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    
+    <style>
+        /* Custom subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #404040;
+        }
+        .glass-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .text-gradient {
+            background: linear-gradient(to bottom right, #ffffff 30%, #a5a5a5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .mesh-gradient {
+            background: radial-gradient(circle at 50% 0%, rgba(120, 119, 198, 0.1), transparent 40%),
+                        radial-gradient(circle at 0% 50%, rgba(56, 189, 248, 0.05), transparent 40%);
+        }
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 3s linear infinite;
+        }
+        /* Grid background pattern for footer */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+    </style>
+<link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style><link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">.font-roboto { font-family: 'Roboto', sans-serif !important; }</style><link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">.font-montserrat { font-family: 'Montserrat', sans-serif !important; }</style><link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">.font-poppins { font-family: 'Poppins', sans-serif !important; }</style><link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">.font-playfair { font-family: 'Playfair Display', serif !important; }</style><link id="all-fonts-link-font-instrument-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-instrument-serif">.font-instrument-serif { font-family: 'Instrument Serif', serif !important; }</style><link id="all-fonts-link-font-merriweather" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap"><style id="all-fonts-style-font-merriweather">.font-merriweather { font-family: 'Merriweather', serif !important; }</style><link id="all-fonts-link-font-bricolage" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-bricolage">.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }</style><link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-jakarta">.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style><link id="all-fonts-link-font-space-grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-space-grotesk">.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }</style><link id="all-fonts-link-font-work-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-work-sans">.font-work-sans { font-family: 'Work Sans', sans-serif !important; }</style><link id="all-fonts-link-font-pt-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-pt-serif">.font-pt-serif { font-family: 'PT Serif', serif !important; }</style><link id="all-fonts-link-font-geist-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist-mono">.font-geist-mono { font-family: 'Geist Mono', monospace !important; }</style><link id="all-fonts-link-font-space-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-space-mono">.font-space-mono { font-family: 'Space Mono', monospace !important; }</style><link id="all-fonts-link-font-quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-quicksand">.font-quicksand { font-family: 'Quicksand', sans-serif !important; }</style><link id="all-fonts-link-font-nunito" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-nunito">.font-nunito { font-family: 'Nunito', sans-serif !important; }</style><link id="all-fonts-link-font-newsreader" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..800&amp;display=swap"><style id="all-fonts-style-font-newsreader">.font-newsreader { font-family: 'Newsreader', serif !important; }</style><link id="all-fonts-link-font-google-sans-flex" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-google-sans-flex">.font-google-sans-flex { font-family: 'Google Sans Flex', sans-serif !important; }</style><link id="all-fonts-link-font-oswald" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-oswald">.font-oswald { font-family: 'Oswald', sans-serif !important; }</style><link id="all-fonts-link-font-dm-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-dm-sans">.font-dm-sans { font-family: 'DM Sans', sans-serif !important; }</style><link id="all-fonts-link-font-cormorant" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-cormorant">.font-cormorant { font-family: 'Cormorant Garamond', serif !important; }</style></head>
+<body class="selection:bg-indigo-500/20 selection:text-indigo-200 antialiased overflow-x-hidden flex flex-col min-h-screen text-neutral-400 font-['Geist'] bg-[#050505] relative">
+
+    <!-- Background Ambience -->
+    <div class="fixed inset-0 z-0 pointer-events-none mesh-gradient"></div>
+    <div class="fixed top-0 left-0 w-full h-full z-0 opacity-20 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+        <div class="glass-card rounded-full px-6 py-3 flex items-center justify-between gap-8 shadow-2xl shadow-black/50">
+            <a href="#" class="text-sm font-medium tracking-tight text-white hover:text-white/80 transition-colors">SF.</a>
+            <div class="hidden sm:flex items-center gap-6">
+                <a href="#about" class="text-xs hover:text-white transition-colors">About</a>
+                <a href="#projects" class="text-xs hover:text-white transition-colors">Projects</a>
+            </div>
+            <a href="/#contact" class="hover:bg-neutral-200 transition-colors text-xs font-medium text-black bg-white rounded-full pt-1.5 pr-4 pb-1.5 pl-4">
+                Contact
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="flex flex-col z-10 text-center max-w-7xl mr-auto ml-auto pt-36 pr-6 pb-20 pl-6 relative items-center">
+        
+        <div class="inline-flex text-[10px] uppercase animate-[pulse_3s_ease-in-out_infinite] text-indigo-300 tracking-widest bg-indigo-500/10 border-indigo-500/20 border rounded-full mb-8 pt-1 pr-3 pb-1 pl-3 gap-x-2 gap-y-2 items-center">Open to chat</div>
+
+        <h1 class="md:text-7xl lg:text-8xl leading-[0.9] text-5xl font-medium text-white tracking-tighter mb-6">Product <br> <span class="text-gradient">Building.</span></h1>
+
+        <p class="md:text-xl leading-relaxed text-lg font-light text-neutral-400 max-w-xl mr-auto mb-10 ml-auto">I am <span class="text-white font-normal">Sacha Fontaine</span>. A Product Builder passionate about SaaS development, AI and sport.</p>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4">
+            <!-- Neon Rotating Border Button -->
+            <a href="mailto:contact@sachafontaine.fr" class="relative inline-flex overflow-hidden rounded-full p-[1px] group">
+                <span class="absolute inset-[-1000%] animate-spin-slow bg-[conic-gradient(from_90deg_at_50%_50%,#050505_0%,#ffffff_50%,#050505_100%)]"></span>
+                <span class="inline-flex cursor-pointer items-center justify-center transition-colors group-hover:bg-[#0a0a0a] text-sm font-medium text-white bg-[#050505] w-full h-full rounded-full pt-3 pr-8 pb-3 pl-8 backdrop-blur-3xl">
+                    Contact me
+                </span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/sacha-fontaine/" target="_blank" class="glass-card hover:bg-white/5 transition-colors flex items-center gap-2 text-sm font-medium text-white rounded-full pt-3 pr-8 pb-3 pl-8">Linkedin</a>
+        </div>
+
+        <!-- Tech Stack Marquee -->
+        <div id="stack" class="mt-24 w-full max-w-4xl mx-auto">
+            <div class="overflow-hidden border-y bg-neutral-900/10 border-white/5 pt-10 pb-10 relative">
+                <div class="z-10 bg-gradient-to-r from-[#050505] to-transparent w-24 absolute top-0 bottom-0 left-0"></div>
+                <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#050505] to-transparent z-10"></div>
+                
+                <div class="flex items-center justify-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                    <iconify-icon icon="simple-icons:vercel" width="24" class="hover:text-white transition-colors" height="24" style="color: rgb(255, 255, 255);"></iconify-icon>
+                    <iconify-icon icon="simple-icons:supabase" width="24" class="hover:text-white transition-colors" height="24" style="color: rgb(255, 255, 255)"></iconify-icon>
+                    <iconify-icon icon="simple-icons:react" width="24" class="hover:text-white transition-colors" height="24" style="color: rgb(255, 255, 255)"></iconify-icon>
+                    <iconify-icon icon="simple-icons:typescript" width="24" class="hover:text-white transition-colors" height="24" style="color: rgb(255, 255, 255);"></iconify-icon>
+                    <iconify-icon icon="simple-icons:openai" width="24" class="hover:text-white transition-colors" height="24" style="color: rgb(255, 255, 255);"></iconify-icon>
+                </div>
+            </div>
+            <p class="text-center text-xs text-neutral-600 mt-4 tracking-wide uppercase">Core Stack</p>
+        </div>
+    </main>
+
+    <!-- Bento Grid Section -->
+    <section class="w-full max-w-7xl z-10 mr-auto ml-auto pr-6 pb-20 pl-6 relative" id="about">
+        <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 auto-rows-[minmax(180px,auto)] gap-x-6 gap-y-6">
+            
+            <!-- Bio Card -->
+            <div class="md:col-span-3 lg:col-span-4 glass-card rounded-3xl p-8 flex flex-col justify-between group hover:border-white/20 transition-all duration-500">
+                <div class="">
+                    <div class="flex text-white bg-neutral-800 w-10 h-10 rounded-full mb-6 items-center justify-center">
+                        <iconify-icon icon="solar:user-speak-rounded-linear" width="20"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl text-white font-medium tracking-tight mb-2">About Me</h3>
+                    <p class="leading-relaxed text-sm">Autonomous and curious, I enjoy being involved in the entire production process and working on fast and challenging product development projects.</p>
+                </div>
+            </div>
+
+            <!-- Focus Area Card -->
+            <div class="md:col-span-3 lg:col-span-4 glass-card rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden group hover:border-white/20 transition-all duration-500">
+                <div class="absolute top-0 right-0 p-32 bg-indigo-500/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-indigo-500/20 transition-all"></div>
+                <div class="">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center text-white">
+                            <iconify-icon icon="solar:code-square-linear" width="20"></iconify-icon>
+                        </div>
+                        <iconify-icon icon="solar:arrow-right-up-linear" class="text-neutral-600 group-hover:text-white transition-colors" width="20"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-medium text-white tracking-tight mb-2">Product Craft</h3>
+                    <p class="leading-relaxed text-sm">I build pragmatic experiences, from MVPs to production, with a strong focus on speed, clarity, and real user value.</p>
+                </div>
+            </div>
+
+            <!-- Stats/Location -->
+            <div class="md:col-span-6 lg:col-span-4 grid grid-cols-2 gap-6">
+                <div class="glass-card rounded-3xl p-6 flex flex-col justify-center items-center text-center hover:border-white/20 transition-all duration-500">
+                    <h4 class="text-4xl font-medium text-white tracking-tighter mb-1">5+</h4>
+                    <p class="text-xs text-neutral-500 uppercase tracking-wider">Years Exp.</p>
+                </div>
+                <div class="glass-card rounded-3xl p-6 flex flex-col justify-center items-center text-center hover:border-white/20 transition-all duration-500 group relative overflow-hidden">
+                    <div class="absolute inset-0 bg-neutral-900 z-0"></div>
+                    <!-- Simple map placeholder overlay -->
+                    <div class="bg-center group-hover:grayscale-0 transition-all duration-700 opacity-20 bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1c0d2d3d-e20c-4667-87bd-e71eb637d2c7_800w.webp)] bg-cover absolute top-0 right-0 bottom-0 left-0 grayscale"></div>
+                    <div class="relative z-10">
+                        <iconify-icon icon="solar:map-point-linear" width="24" class="text-white mb-2 mx-auto"></iconify-icon>
+                        <p class="text-sm font-medium text-white">Annecy, FR</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Timeline - FIXED -->
+            <div id="experience" class="col-span-1 md:col-span-6 lg:col-span-12 glass-card rounded-3xl p-8 hover:border-white/20 transition-all duration-500">
+                <div class="flex items-center gap-3 mb-10">
+                    <iconify-icon icon="solar:briefcase-linear" class="text-white" width="20"></iconify-icon>
+                    <h3 class="text-lg text-white font-medium tracking-tight">Experience</h3>
+                </div>
+                
+                <div class="relative">
+                    <!-- Desktop Horizontal Line (Behind items) -->
+                    <div class="hidden md:block absolute top-[9px] left-0 w-full h-[1px] bg-neutral-800 z-0"></div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        
+                        <!-- Item 1 -->
+                        <div class="relative group">
+                            <!-- Mobile Vertical Line -->
+                            <div class="md:hidden absolute left-[3.5px] top-[9px] bottom-[-40px] w-[1px] bg-neutral-800 z-0"></div>
+                            
+                            <div class="flex flex-row md:flex-col gap-6 md:gap-0 items-start">
+                                <!-- Dot Marker -->
+                                <div class="relative z-10 flex-shrink-0 w-2 h-2 mt-2 md:mt-0 rounded-full bg-[#050505] border border-neutral-600 group-hover:border-white group-hover:scale-125 transition-all duration-300 md:mb-6"></div>
+                                
+                                <!-- Content -->
+                                <div class="flex-1">
+                                    <div class="flex flex-col mb-1">
+                                        <h4 class="font-medium text-white text-base">Product Manager</h4>
+                                        <span class="text-xs text-neutral-500 font-mono mt-0.5">Present</span>
+                                    </div>
+                                    <p class="text-sm mb-2 text-indigo-300 font-medium">Qwant</p>
+                                    <p class="leading-relaxed text-sm text-neutral-500">Shaping AI search experiences at scale. Focusing on usability, trust, and system scalability.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="relative group">
+                            <!-- Mobile Vertical Line -->
+                            <div class="md:hidden absolute left-[3.5px] top-[9px] bottom-[-40px] w-[1px] bg-neutral-800 z-0"></div>
+                            
+                            <div class="flex flex-row md:flex-col gap-6 md:gap-0 items-start">
+                                <div class="relative z-10 flex-shrink-0 w-2 h-2 mt-2 md:mt-0 rounded-full bg-[#050505] border border-neutral-600 group-hover:border-indigo-400 group-hover:scale-125 transition-all duration-300 md:mb-6"></div>
+                                
+                                <div class="flex-1">
+                                    <div class="flex flex-col mb-1">
+                                        <h4 class="font-medium text-white text-base">Product Builder</h4>
+                                        <span class="text-xs text-neutral-500 font-mono mt-0.5">2019 - Now</span>
+                                    </div>
+                                    <p class="text-sm text-indigo-300 mb-2 font-medium">Freelance</p>
+                                    <p class="leading-relaxed text-sm text-neutral-500">Building custom web tools, fast. MVP development, automation, and e-commerce solutions.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <!-- Item 3 -->
+                         <div class="relative group">
+                            <!-- No Mobile Line for last item -->
+                            
+                            <div class="flex flex-row md:flex-col gap-6 md:gap-0 items-start">
+                                <div class="relative z-10 flex-shrink-0 w-2 h-2 mt-2 md:mt-0 rounded-full bg-[#050505] border border-neutral-600 group-hover:border-white group-hover:scale-125 transition-all duration-300 md:mb-6"></div>
+                                
+                                <div class="flex-1">
+                                    <div class="flex flex-col mb-1">
+                                        <h4 class="text-base font-medium text-white">Product Builder</h4>
+                                        <span class="text-xs text-neutral-500 font-mono mt-0.5">2022 - 2024</span>
+                                    </div>
+                                    <p class="text-sm mb-2 text-indigo-300 font-medium">PayFit</p>
+                                    <p class="leading-relaxed text-sm text-neutral-500">Hybrid role between product management and delivery in a fast-growing SaaS environment.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 1 - Full Width -->
+            <div class="col-span-1 md:col-span-6 lg:col-span-12 glass-card hover:border-white/20 transition-all duration-500 group overflow-hidden rounded-3xl pt-10 pr-10 pb-10 pl-10 relative" id="projects">
+                <div class="z-10 bg-gradient-to-r from-[#050505] via-[#050505]/90 to-transparent absolute top-0 right-0 bottom-0 left-0 w-full md:w-2/3"></div>
+                
+                <div class="flex flex-col min-h-[240px] h-full z-20 relative justify-center">
+                    <div class="mb-6">
+                        <span class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider bg-emerald-400/10 border-emerald-400/20 border rounded pt-1 pr-2 pb-1 pl-2">Side Project</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-medium text-white tracking-tight mb-4">Pacemate — AI Running Coach</h3>
+                    <p class="text-base text-neutral-400 max-w-xl mb-8 leading-relaxed">Pacemate is an AI-powered running coach. It generates personalized training plans based on performance, progression and recovery, with a long-term and sustainable approach to athletic development.</p>
+                    
+                    <div class="flex flex-wrap items-center gap-3">
+                        <span class="text-xs text-neutral-300 bg-white/5 border-white/10 border rounded-full pt-1 pr-3 pb-1 pl-3">Next.js</span>
+                        <span class="text-xs text-neutral-300 bg-white/5 border-white/10 border rounded-full pt-1 pr-3 pb-1 pl-3">Vercel</span>
+                        <span class="text-xs text-neutral-300 bg-white/5 border-white/10 border rounded-full px-3 py-1">Supabase</span><span class="text-xs text-neutral-300 bg-white/5 border-white/10 border rounded-full pt-1 pr-3 pb-1 pl-3">Tailwind</span>
+                    </div>
+
+                    <div class="mt-8 flex items-center gap-4">
+                        <a href="/#contact" class="hover:border-white transition-colors flex items-center gap-2 text-sm text-white border-white/30 border-b pb-0.5">Request a demo by mail</a>
+                    </div>
+                </div>
+                
+                <!-- Abstract visual representation -->
+                <div class="absolute top-1/2 -translate-y-1/2 right-0 w-full md:w-1/2 h-full opacity-30 md:opacity-50 z-0 pointer-events-none">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-emerald-500/20 fill-current">
+                        <path d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.1,-19.2,95.8,-5.3C93.5,8.6,82.2,21.5,70.6,31.6C59,41.7,47.1,49,35.3,55.4C23.5,61.8,11.8,67.3,-1.2,69.4C-14.2,71.5,-28.4,70.2,-40.8,64.2C-53.2,58.2,-63.8,47.5,-71.3,35.2C-78.8,22.9,-83.2,9,-80.7,-3.6C-78.2,-16.2,-68.8,-27.5,-58.5,-36.8C-48.2,-46.1,-37,-53.4,-25.5,-62.3C-14,-71.2,-2.2,-81.7,10.2,-82.1C22.6,-82.5,44.7,-84.7,44.7,-76.4Z" transform="translate(100 100)"></path>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Enhanced Centered Footer -->
+    <footer class="overflow-hidden bg-black w-full border-white/5 border-t mt-auto pt-32 pb-12 relative" id="contact">
+        
+        <!-- Ambient Background for Footer -->
+        <div class="absolute inset-0 bg-grid opacity-20 pointer-events-none mask-image-gradient"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-64 bg-indigo-500/10 blur-[100px] pointer-events-none"></div>
+
+        <div class="z-10 container flex flex-col text-center mr-auto ml-auto pr-6 pl-6 relative items-center justify-center">
+            
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tighter mb-6">Let’s build something <br> <span class="text-neutral-500">exceptional.</span></h2>
+            
+            <p class="text-lg font-light text-neutral-400 max-w-md mr-auto mb-10 ml-auto">Have an idea? Let’s talk.
+ <br> And turn it into something that actually works.</p>
+
+            <button onclick="this.querySelector('span.text-content').innerText = 'contact@sachafontaine.fr';" class="relative inline-flex overflow-hidden rounded-full p-[1px] group cursor-pointer outline-none">
+                <span class="absolute inset-[-1000%] animate-spin-slow bg-[conic-gradient(from_90deg_at_50%_50%,#050505_0%,#ffffff_50%,#050505_100%)]"></span>
+                <span class="text-content inline-flex items-center justify-center transition-colors group-hover:bg-[#0a0a0a] text-base font-medium text-white bg-[#050505] w-full h-full rounded-full pt-4 pr-10 pb-4 pl-10 backdrop-blur-3xl">
+                    Say Hello
+                </span>
+            </button>
+
+            <div class="mt-20 flex flex-col md:flex-row items-center justify-between w-full max-w-4xl border-t border-white/5 pt-8">
+                <span class="text-xs text-neutral-600 mb-4 md:mb-0">© 2026 Sacha Fontaine. All rights reserved.</span>
+                
+                <div class="flex items-center gap-6">
+                    <a href="https://www.linkedin.com/in/sacha-fontaine/" class="text-neutral-500 hover:text-white transition-colors flex items-center gap-2 text-xs">
+                        <iconify-icon icon="solar:link-circle-linear" width="16"></iconify-icon>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/sachafontaine" class="text-neutral-500 hover:text-white transition-colors flex items-center gap-2 text-xs">
+                        <iconify-icon icon="solar:code-circle-linear" width="16"></iconify-icon>
+                        GitHub
+                    </a>
+                    <a href="https://x.com" class="text-neutral-500 hover:text-white transition-colors flex items-center gap-2 text-xs">
+                        <iconify-icon icon="simple-icons:x" width="14"></iconify-icon>
+                        Twitter
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+</body></html>
